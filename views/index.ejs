@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+</head>
+<body>
+    <%- include('partials/header') %>
+    <input type="hidden" name="name" value="<%= name %>">
+    <h1>Welcome <%= name %>!</h1>
+    <h2>Blog Posts:</h2>
+    <!-- Add link to create page with name parameter -->
+    <a href="/create?name=<%= encodeURIComponent(name) %>">Create New Post</a>
+    <br>
+    <% posts.forEach(function(post) { %>
+        <div class="post">
+            <div class="flex-buttons">
+                <a href="/edit/<%= post.id %>?name=<%= name %>">Edit</a>
+                <form action="/delete/<%= post.id %>?name=<%= name %>" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            <h3><%= post.title %></h3>
+            <p><%= post.content %></p>
+            <small>By <%= post.author %> on <%= post.createdAt.toLocaleString() %></small>
+        </div>
+    <% }) %>
+    <%- include('partials/footer') %>
+</body>
+</html>

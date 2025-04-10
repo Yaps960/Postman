@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: "Arial", sans-serif;
+        }
+
+        div {
+        background-color: #333;
+        padding: 1rem 0;
+        }
+
+        ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 2rem;
+        }
+
+        li {
+        margin-left: 1.5rem;
+        }
+
+        a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+        }
+
+        a:hover {
+        color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <!-- If the url is in /create and /edit, hide Home-->
+            <% if (typeof name !== 'undefined' && !req.path.includes('/create') && !req.path.includes('/edit')) { %>
+                <li><a href="/home?name=<%= encodeURIComponent(name) %>">Home</a></li>
+            <% } %>
+            <li><a href="/create?name=<%= typeof name !== 'undefined' ? encodeURIComponent(name) : '' %>">+</a></li>
+            <li><a href="/" style="color: red;">Sign-out</a></li>
+        </ul>
+    </div>
+</body>
+</html>

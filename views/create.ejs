@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link rel="stylesheet" href="/stylesheets/create.css" />
+</head>
+<body>
+    <div class="flexbox">
+        <div class="flexbox horizontal">
+            <h1>Create post</h1>
+            <a href="/home?name=<%= typeof name !== 'undefined' ? encodeURIComponent(name) : '' %>">X</a>
+        </div>
+        <form action="/create" method="POST">
+            <input type="hidden" name="name" value="<%= name %>">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="content" placeholder="Content" required></textarea>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+</body>
+</html>
